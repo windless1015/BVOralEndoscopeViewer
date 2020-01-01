@@ -8,11 +8,22 @@ using System.Threading;
 
 namespace BVOralEndoscopeViewer
 {
+    //类外
+    public delegate void SerialPortCmdRecvHandler(string cmd);
+
     class SerialPortHelper
     {
         public SerialPort comPortDevice = null;
         string[] AllPortNamesList;
         bool isFindDeviceFlag = false; //是否找到我们要的串口设备
+
+        //类内部声明事件的委托类型
+        private delegate bool RecvHeartResponse();
+
+
+
+        //声明事件本身,使用event关键字
+        public event SerialPortCmdRecvHandler SerialPortCmdRecv;
 
         public SerialPortHelper()
         {
@@ -20,13 +31,25 @@ namespace BVOralEndoscopeViewer
             AllPortNamesList = SerialPort.GetPortNames();//获取当前系统中所有串口的名字,例如COM1, COM3
             comPortDevice.DataReceived += ComPortDevice_DataReceived;
         }
+        ~SerialPortHelper()
+        {
+            if (comPortDevice.IsOpen)
+            {
+                comPortDevice.Close();
+            }
+        }
 
         private void ComPortDevice_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort comDeviceInstance = (SerialPort)sender;
             byte[] RecvDataBytes = new byte[comDeviceInstance.BytesToRead];
             comDeviceInstance.Read(RecvDataBytes, 0, RecvDataBytes.Length);//读取数据
-            if (!isFindDeviceFlag) //进入寻找设备的阶段
+            if (isFindDeviceFlag) //进入正常指令接受的阶段,大部分是在这个阶段
+            {
+                string recvCmdString = StringOperator.ByteArrayToString(ref RecvDataBytes);
+                SerialPortCmdRecv(recvCmdString);//接受到下位机的指令触发事件,通知外界
+            }
+            else //进入寻找设备的阶段
             {
                 byte[] TargetCmdBytes = new byte[] { 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00 };
                 if (StringOperator.CompareByteArraysEqual(ref RecvDataBytes, ref TargetCmdBytes))
@@ -36,9 +59,8 @@ namespace BVOralEndoscopeViewer
             }
         }
 
-        public void FindDevice()
+        public bool FindDevice()
         {
-
             //遍历所有串口,向每一个串口发送心跳指令11001400, 串口如果收到11110000表示找到目标设备
             foreach (string comName in AllPortNamesList)
             {
@@ -51,14 +73,16 @@ namespace BVOralEndoscopeViewer
                     Thread.Sleep(50);//等待接受数据判断isFindDeviceFlag
                     if (!isFindDeviceFlag)
                     {
-                        comPortDevice.Close();
+                        comPortDevice.Close(); //没有收到回复需要关闭这个串口
                     }
-                    else
+                    else  //找到目标串口就返回true
                     {
-                        break; //跳出foreach循环                    
+                        return true;
+                        //break; //跳出foreach循环                    
                     }
                 }
             }
+            return false;
         }
 
         private void InitPort(string comName)

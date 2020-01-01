@@ -10,18 +10,26 @@ using System.Windows.Forms;
 
 namespace BVOralEndoscopeViewer
 {
-    public partial class Form1 : Form
+    public partial class VideoCaptureWindow : Form
     {
         private SerialPortHelper serialDevice = null;
-        public Form1()
+        public VideoCaptureWindow()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void VideoCaptureWindow_Load(object sender, EventArgs e)
         {
             serialDevice = new SerialPortHelper();
-            serialDevice.FindDevice();
+            serialDevice.SerialPortCmdRecv += new SerialPortCmdRecvHandler(CmdRecvHandle);
+            bool isFindDevice = serialDevice.FindDevice();
+        }
+
+  
+
+        private void CmdRecvHandle(string cmd)
+        {
+            string aaa = cmd;
         }
     }
 }
