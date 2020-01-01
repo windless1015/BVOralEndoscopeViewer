@@ -12,9 +12,16 @@ namespace BVOralEndoscopeViewer
 {
     public partial class Form1 : Form
     {
+        private SerialPortHelper serialDevice = null;
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            serialDevice = new SerialPortHelper();
+            serialDevice.FindDevice();
         }
     }
 }
