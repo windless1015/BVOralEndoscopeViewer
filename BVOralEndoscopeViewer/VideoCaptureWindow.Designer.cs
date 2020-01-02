@@ -32,17 +32,17 @@
             this.ToolStrip_Icons = new System.Windows.Forms.ToolStrip();
             this.MicroLensModeBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.NormalModeBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.FigureModeBtn = new System.Windows.Forms.ToolStripButton();
             this.ToolStrip_Btns = new System.Windows.Forms.ToolStrip();
             this.ToolStripComboBoxResolution = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SnapshotBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.RecordingBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SettingBtn = new System.Windows.Forms.ToolStripButton();
-            this.NormalModeBtn = new System.Windows.Forms.ToolStripButton();
-            this.FigureModeBtn = new System.Windows.Forms.ToolStripButton();
             this.ToolStrip_Icons.SuspendLayout();
             this.ToolStrip_Btns.SuspendLayout();
             this.SuspendLayout();
@@ -76,10 +76,30 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // NormalModeBtn
+            // 
+            this.NormalModeBtn.AutoSize = false;
+            this.NormalModeBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.NormalModeBtn.Image = ((System.Drawing.Image)(resources.GetObject("NormalModeBtn.Image")));
+            this.NormalModeBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NormalModeBtn.Name = "NormalModeBtn";
+            this.NormalModeBtn.Size = new System.Drawing.Size(100, 22);
+            this.NormalModeBtn.Text = "一般模式";
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // FigureModeBtn
+            // 
+            this.FigureModeBtn.AutoSize = false;
+            this.FigureModeBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.FigureModeBtn.Image = ((System.Drawing.Image)(resources.GetObject("FigureModeBtn.Image")));
+            this.FigureModeBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FigureModeBtn.Name = "FigureModeBtn";
+            this.FigureModeBtn.Size = new System.Drawing.Size(100, 22);
+            this.FigureModeBtn.Text = "人像模式";
             // 
             // ToolStrip_Btns
             // 
@@ -109,16 +129,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
             // SnapshotBtn
             // 
             this.SnapshotBtn.AutoSize = false;
@@ -130,6 +140,11 @@
             this.SnapshotBtn.Size = new System.Drawing.Size(100, 22);
             this.SnapshotBtn.Text = "拍照";
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
             // RecordingBtn
             // 
             this.RecordingBtn.AutoSize = false;
@@ -140,6 +155,11 @@
             this.RecordingBtn.Size = new System.Drawing.Size(100, 22);
             this.RecordingBtn.Text = "录像";
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
             // SettingBtn
             // 
             this.SettingBtn.AutoSize = false;
@@ -149,26 +169,6 @@
             this.SettingBtn.Name = "SettingBtn";
             this.SettingBtn.Size = new System.Drawing.Size(100, 22);
             this.SettingBtn.Text = "设置";
-            // 
-            // NormalModeBtn
-            // 
-            this.NormalModeBtn.AutoSize = false;
-            this.NormalModeBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.NormalModeBtn.Image = ((System.Drawing.Image)(resources.GetObject("NormalModeBtn.Image")));
-            this.NormalModeBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NormalModeBtn.Name = "NormalModeBtn";
-            this.NormalModeBtn.Size = new System.Drawing.Size(100, 22);
-            this.NormalModeBtn.Text = "一般模式";
-            // 
-            // FigureModeBtn
-            // 
-            this.FigureModeBtn.AutoSize = false;
-            this.FigureModeBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.FigureModeBtn.Image = ((System.Drawing.Image)(resources.GetObject("FigureModeBtn.Image")));
-            this.FigureModeBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FigureModeBtn.Name = "FigureModeBtn";
-            this.FigureModeBtn.Size = new System.Drawing.Size(100, 22);
-            this.FigureModeBtn.Text = "人像模式";
             // 
             // VideoCaptureWindow
             // 
