@@ -21,11 +21,13 @@ namespace BVOralEndoscopeViewer
         }
 
         //01000100的8位byte[]转化为 " 01000100"的string字符串
+        //0 10 0 0 0 12 0 0 的byte[]转化为0A000C00
         public static string ByteArrayToString(ref byte[] byteArr)
         {
             StringBuilder hex = new StringBuilder(byteArr.Length);
             foreach (byte b in byteArr)
-                hex.AppendFormat("{0}", b);
+                //hex.AppendFormat("x", b);
+                hex.Append(b.ToString("X"));
             return hex.ToString();
         }
 

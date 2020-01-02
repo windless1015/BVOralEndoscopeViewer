@@ -17,11 +17,6 @@ namespace BVOralEndoscopeViewer
         string[] AllPortNamesList;
         bool isFindDeviceFlag = false; //是否找到我们要的串口设备
 
-        //类内部声明事件的委托类型
-        private delegate bool RecvHeartResponse();
-
-
-
         //声明事件本身,使用event关键字
         public event SerialPortCmdRecvHandler SerialPortCmdRecv;
 
@@ -70,15 +65,14 @@ namespace BVOralEndoscopeViewer
                 {
                     byte[] CmdBytes = StringOperator.ConvertStringToHEXByte(heartBeatCommand);
                     comPortDevice.Write(CmdBytes, 0, CmdBytes.Length);
-                    Thread.Sleep(50);//等待接受数据判断isFindDeviceFlag
+                    Thread.Sleep(80);//等待接受数据判断isFindDeviceFlag
                     if (!isFindDeviceFlag)
                     {
                         comPortDevice.Close(); //没有收到回复需要关闭这个串口
                     }
                     else  //找到目标串口就返回true
                     {
-                        return true;
-                        //break; //跳出foreach循环                    
+                        return true;                
                     }
                 }
             }

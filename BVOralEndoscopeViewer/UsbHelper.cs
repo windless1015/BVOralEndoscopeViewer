@@ -12,22 +12,22 @@ namespace BVOralEndoscopeViewer
 {
     class UsbHelper
     {
-        private UsbDevice MyUsbDevice;
-        private IDeviceNotifier UsbDeviceNotifier = DeviceNotifier.OpenDeviceNotifier();
-        private UsbEndpointWriter writer;
-        private UsbEndpointReader reader;
+        //private UsbDevice MyUsbDevice;
+        //private IDeviceNotifier UsbDeviceNotifier = DeviceNotifier.OpenDeviceNotifier();
+        //private UsbEndpointWriter writer;
+        //private UsbEndpointReader reader;
 
-        public bool OpenDevice(int vid, int pid)
-        {
-            UsbDeviceFinder myUsbFinder = new UsbDeviceFinder(vid, pid);
-            UsbRegDeviceList DeviceList = UsbDevice.AllLibUsbDevices;
-            UsbRegistry RegInfo = DeviceList.Find(myUsbFinder);
-            if (RegInfo != null)
-            {
-                MyUsbDevice = UsbDevice.OpenUsbDevice(myUsbFinder);
-            }
-            return true;
+        //public bool OpenDevice(int vid, int pid)
+        //{
+        //    UsbDeviceFinder myUsbFinder = new UsbDeviceFinder(vid, pid);
+        //    UsbRegDeviceList DeviceList = UsbDevice.AllLibUsbDevices;
+        //    UsbRegistry RegInfo = DeviceList.Find(myUsbFinder);
+        //    if (RegInfo != null)
+        //    {
+        //        MyUsbDevice = UsbDevice.OpenUsbDevice(myUsbFinder);
+        //    }
+        //    return true;
              
-        }
+        //}
     }
 }
