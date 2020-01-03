@@ -29,10 +29,14 @@ namespace BVOralEndoscopeViewer
             //需要根据设备类型进行new不同的通信方式
             serialDevice = new SerialPortHelper();
             bool isFindDevice = serialDevice.FindDevice();
-            //serialDevice.SerialPortCmdRecv += new SerialPortCmdRecvHandler(CmdRecvHandle);
-            serialDevice.SerialPortCmdRecv += CmdRecvHandle;
+            if (isFindDevice)
+            {
+                serialDevice.SerialPortCmdRecv += CmdRecvHandle;
+            }
+            bool isConnected = Utility.IsDeviceNetworkConnected("10.10.10.254");
 
-            socketClient = new SimpleTcpClient().Connect("10.10.10.254", 3333);
+            socketClient = new SimpleTcpClient();
+            socketClient.Connect("10.10.10.254", 3333);
             socketClient.DataReceived += SocketClient_DataReceived;
 
             /*
