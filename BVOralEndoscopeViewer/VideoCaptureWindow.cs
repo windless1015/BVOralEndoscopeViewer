@@ -26,19 +26,25 @@ namespace BVOralEndoscopeViewer
 
         private void VideoCaptureWindow_Load(object sender, EventArgs e)
         {
-            //需要根据设备类型进行new不同的通信方式
-            serialDevice = new SerialPortHelper();
-            bool isFindDevice = serialDevice.FindDevice();
-            if (isFindDevice)
+            videoPlayerHelper.CheckVideoType();
+            VideoStreamType videoType = videoPlayerHelper.videoType;
+            if (videoType == VideoStreamType.USB)
             {
-                serialDevice.SerialPortCmdRecv += CmdRecvHandle;
+                //需要根据设备类型进行new不同的通信方式
+                serialDevice = new SerialPortHelper();
+                bool isFindDevice = serialDevice.FindDevice();
+                if (isFindDevice)
+                {
+                    serialDevice.SerialPortCmdRecv += CmdRecvHandle;
+                }
             }
-            bool isConnected = Utility.IsDeviceNetworkConnected("10.10.10.254");
-
-            socketClient = new SimpleTcpClient();
-            socketClient.Connect("10.10.10.254", 3333);
-            socketClient.DataReceived += SocketClient_DataReceived;
-
+            else if (videoType == VideoStreamType.WIFI)
+            {
+                socketClient = new SimpleTcpClient();
+                socketClient.Connect("10.10.10.254", 3333);
+                socketClient.DataReceived += SocketClient_DataReceived;
+            }
+            videoPlayerHelper.OpenVideoSource();
             /*
              string sendCMD = "{\n\t\"mcucmd\":\t\"0104000100060000\"\n}";
             socketClient.WriteLineAndGetReply(sendCMD, TimeSpan.FromSeconds(1));

@@ -43,6 +43,7 @@
             this.RecordingBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SettingBtn = new System.Windows.Forms.ToolStripButton();
+            this.videoPlayerHelper = new BVOralEndoscopeViewer.VideoPlayerHelper();
             this.ToolStrip_Icons.SuspendLayout();
             this.ToolStrip_Btns.SuspendLayout();
             this.SuspendLayout();
@@ -170,11 +171,21 @@
             this.SettingBtn.Size = new System.Drawing.Size(100, 22);
             this.SettingBtn.Text = "设置";
             // 
+            // videoPlayerHelper
+            // 
+            this.videoPlayerHelper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoPlayerHelper.Location = new System.Drawing.Point(0, 50);
+            this.videoPlayerHelper.Name = "videoPlayerHelper";
+            this.videoPlayerHelper.Size = new System.Drawing.Size(1106, 582);
+            this.videoPlayerHelper.TabIndex = 2;
+            this.videoPlayerHelper.videoType = BVOralEndoscopeViewer.VideoStreamType.NO_VIDEO;
+            // 
             // VideoCaptureWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 632);
+            this.Controls.Add(this.videoPlayerHelper);
             this.Controls.Add(this.ToolStrip_Btns);
             this.Controls.Add(this.ToolStrip_Icons);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -207,6 +218,7 @@
         private System.Windows.Forms.ToolStripButton RecordingBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton SettingBtn;
+        private VideoPlayerHelper videoPlayerHelper;
     }
 }
 

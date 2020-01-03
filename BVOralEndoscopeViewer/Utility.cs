@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.NetworkInformation;
+using Accord.Video.DirectShow;
 
 namespace BVOralEndoscopeViewer
 {
@@ -19,6 +20,20 @@ namespace BVOralEndoscopeViewer
                 return true;
             else
                 return false;
+        }
+
+        public static string GetUSBCameraMonikerString()
+        {
+            string monikerString = null;
+            FilterInfoCollection VideoDevicesCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo item in VideoDevicesCollection)
+            {
+                if (item.Name.Equals("SKT-OL400C-13A"))
+                {
+                    monikerString = item.MonikerString;
+                }
+            }
+            return monikerString;
         }
     }
 }
