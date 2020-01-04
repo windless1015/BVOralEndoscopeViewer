@@ -18,9 +18,14 @@ namespace BVOralEndoscopeViewer
         WIFI = 1,
         NO_VIDEO = 2
     }
-
     public partial class VideoPlayerHelper : UserControl
     {
+        //视频流, 接口类定义,可以是设备的视频流,也可以是mjpeg的视频流
+        private IVideoSource videoStreamSource { get; set; }
+        //视频数据类型, WIFI 和 USB
+        public VideoStreamType videoType { get; set; }
+        //视频的名字字符串
+        private string deviceMonikerString { get; set; }
         public VideoPlayerHelper()
         {
             InitializeComponent();
@@ -28,14 +33,6 @@ namespace BVOralEndoscopeViewer
             videoType = VideoStreamType.NO_VIDEO;
             deviceMonikerString = null;
         }
-
-        //视频流, 接口类定义,可以是设备的视频流,也可以是mjpeg的视频流
-        private IVideoSource videoStreamSource { get; set; }
-        //视频数据类型, WIFI 和 USB
-        public VideoStreamType videoType { get; set; }
-        //视频的名字字符串
-        private string deviceMonikerString { get; set; }
-
 
         //判断视频的类型,usb或者wifi
         public void CheckVideoType()
@@ -77,8 +74,7 @@ namespace BVOralEndoscopeViewer
             }
             VideoSourcePlayer.VideoSource = videoStreamSource;
             VideoSourcePlayer.Start();
-            
-        }
 
+        }
     }
 }

@@ -12,22 +12,32 @@ using SimpleTCP;
 
 namespace BVOralEndoscopeViewer
 {
+    public enum ModeStatus
+    {
+        MicroLensMode = 0,
+        NormalMode = 1,
+        FigureMode = 2
+    }
+
     public partial class VideoCaptureWindow : Form
     {
 
         private SynchronizationContext syncContext = null;
         private SerialPortHelper serialDevice = null;
         private SimpleTcpClient socketClient = null;
+        private VideoStreamType videoType = VideoStreamType.NO_VIDEO;
         public VideoCaptureWindow()
         {
             InitializeComponent();
             syncContext = SynchronizationContext.Current;
         }
 
+
+        ////////////////////////////////界面逻辑事务////////////////////////////////////////////
         private void VideoCaptureWindow_Load(object sender, EventArgs e)
         {
             videoPlayerHelper.CheckVideoType();
-            VideoStreamType videoType = videoPlayerHelper.videoType;
+            videoType = videoPlayerHelper.videoType;
             if (videoType == VideoStreamType.USB)
             {
                 //需要根据设备类型进行new不同的通信方式
@@ -45,10 +55,52 @@ namespace BVOralEndoscopeViewer
                 socketClient.DataReceived += SocketClient_DataReceived;
             }
             videoPlayerHelper.OpenVideoSource();
-            /*
-             string sendCMD = "{\n\t\"mcucmd\":\t\"0104000100060000\"\n}";
-            socketClient.WriteLineAndGetReply(sendCMD, TimeSpan.FromSeconds(1));
-             */
+
+        }
+
+        private void ModeBtns_Click(object sender, EventArgs e)
+        {
+            ToolStripButton btn = (ToolStripButton)sender;
+            ModeStatus mode = (ModeStatus)(Convert.ToInt32((btn.Tag)));
+            //我给三个按钮设置了Tag属性,分别为0,1,2,适用枚举强制类型转换为目标参数
+            ProcessModeBtnsClick(mode);
+        }
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        private void ProcessModeBtnsClick(ModeStatus mode)
+        {
+            //选择对于那个的按钮,
+            bool MicroLensFlg = false, NormalFlg = false, FigureFlg = false;
+            string cmdStringBody = null;
+            switch (mode)
+            {
+                case ModeStatus.MicroLensMode:
+                    MicroLensFlg = true;
+                    cmdStringBody = "01010200";
+                    break;
+                case ModeStatus.NormalMode:
+                    NormalFlg = true;
+                    cmdStringBody = "14010600";
+                    break;
+                case ModeStatus.FigureMode:
+                    FigureFlg = true;
+                    cmdStringBody = "2A010D00";
+                    break;
+            }
+            MicroLensModeBtn.Checked = MicroLensFlg;
+            NormalModeBtn.Checked = NormalFlg;
+            FigureModeBtn.Checked = FigureFlg;
+            //根据当前连接模式发送对应的指令
+            if (videoType == VideoStreamType.WIFI)
+            {
+                string wifiCmdFormat = "{\n\t\"mcucmd\":\t\"" + cmdStringBody + "\"\n}";
+                socketClient.WriteLineAndGetReply(wifiCmdFormat, TimeSpan.FromSeconds(1));
+            }
+            else if (videoType == VideoStreamType.USB)
+            {
+                serialDevice.WriteCmd(cmdStringBody);
+            }
         }
 
 
@@ -90,15 +142,15 @@ namespace BVOralEndoscopeViewer
             bool MicroLensFlg = false, NormalFlg = false, FigureFlg = false;
             if (cmd == "01000100") //微距模式
             {
-                MicroLensFlg = true; NormalFlg = false; FigureFlg = false;
+                MicroLensFlg = true;
             }
             else if (cmd == "14000500") //一般模式
             {
-                MicroLensFlg = false; NormalFlg = true; FigureFlg = false;
+                NormalFlg = true;
             }
             else if (cmd == "2A000C00")//人像模式
             {
-                MicroLensFlg = false; NormalFlg = false; FigureFlg = true;
+                FigureFlg = true;
             }
 
             Action actionDelegate = () =>
@@ -116,8 +168,6 @@ namespace BVOralEndoscopeViewer
 
         }
 
-
         
-
     }
 }

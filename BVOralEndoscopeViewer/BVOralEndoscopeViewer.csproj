@@ -150,7 +150,9 @@
     <Compile Include="VideoPlayerHelper.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="VideoPlayerHelper.Designer.cs" />
+    <Compile Include="VideoPlayerHelper.Designer.cs">
+      <DependentUpon>VideoPlayerHelper.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="VideoCaptureWindow.resx">
       <DependentUpon>VideoCaptureWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,7 +166,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="VideoPlayerHelper.resx" />
+    <EmbeddedResource Include="VideoPlayerHelper.resx">
+      <DependentUpon>VideoPlayerHelper.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

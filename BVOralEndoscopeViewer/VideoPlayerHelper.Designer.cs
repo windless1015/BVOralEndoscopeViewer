@@ -35,13 +35,13 @@
             // 
             this.VideoSourcePlayer.AutoSizeControl = true;
             this.VideoSourcePlayer.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.VideoSourcePlayer.BorderColor = System.Drawing.Color.Transparent;
             this.VideoSourcePlayer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VideoSourcePlayer.KeepAspectRatio = true;
             this.VideoSourcePlayer.Location = new System.Drawing.Point(0, 0);
             this.VideoSourcePlayer.Name = "VideoSourcePlayer";
-            this.VideoSourcePlayer.Size = new System.Drawing.Size(700, 463);
+            this.VideoSourcePlayer.Size = new System.Drawing.Size(271, 198);
             this.VideoSourcePlayer.TabIndex = 0;
-            this.VideoSourcePlayer.Text = "videoSourcePlayer1";
             this.VideoSourcePlayer.VideoSource = null;
             // 
             // VideoPlayerHelper
@@ -50,7 +50,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.VideoSourcePlayer);
             this.Name = "VideoPlayerHelper";
-            this.Size = new System.Drawing.Size(700, 463);
+            this.Size = new System.Drawing.Size(271, 198);
             this.ResumeLayout(false);
 
         }

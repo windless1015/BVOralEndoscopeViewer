@@ -34,6 +34,13 @@ namespace BVOralEndoscopeViewer
             }
         }
 
+        public void WriteCmd(string cmd)
+        {
+            //string to byte[]
+            byte[] CmdBytes = StringOperator.ConvertStringToHEXByte(cmd);
+            comPortDevice.Write(CmdBytes, 0, CmdBytes.Length);
+        }
+
         private void ComPortDevice_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort comDeviceInstance = (SerialPort)sender;

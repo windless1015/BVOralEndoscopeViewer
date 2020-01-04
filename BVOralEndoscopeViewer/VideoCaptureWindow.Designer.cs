@@ -69,8 +69,10 @@
             this.MicroLensModeBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MicroLensModeBtn.Name = "MicroLensModeBtn";
             this.MicroLensModeBtn.Size = new System.Drawing.Size(100, 22);
+            this.MicroLensModeBtn.Tag = "0";
             this.MicroLensModeBtn.Text = "微距模式";
             this.MicroLensModeBtn.ToolTipText = "微距模式";
+            this.MicroLensModeBtn.Click += new System.EventHandler(this.ModeBtns_Click);
             // 
             // toolStripSeparator1
             // 
@@ -85,7 +87,9 @@
             this.NormalModeBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NormalModeBtn.Name = "NormalModeBtn";
             this.NormalModeBtn.Size = new System.Drawing.Size(100, 22);
+            this.NormalModeBtn.Tag = "1";
             this.NormalModeBtn.Text = "一般模式";
+            this.NormalModeBtn.Click += new System.EventHandler(this.ModeBtns_Click);
             // 
             // toolStripSeparator2
             // 
@@ -100,7 +104,9 @@
             this.FigureModeBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FigureModeBtn.Name = "FigureModeBtn";
             this.FigureModeBtn.Size = new System.Drawing.Size(100, 22);
+            this.FigureModeBtn.Tag = "2";
             this.FigureModeBtn.Text = "人像模式";
+            this.FigureModeBtn.Click += new System.EventHandler(this.ModeBtns_Click);
             // 
             // ToolStrip_Btns
             // 
@@ -173,10 +179,10 @@
             // 
             // videoPlayerHelper
             // 
-            this.videoPlayerHelper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoPlayerHelper.Location = new System.Drawing.Point(0, 50);
+            this.videoPlayerHelper.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.videoPlayerHelper.Location = new System.Drawing.Point(23, 100);
             this.videoPlayerHelper.Name = "videoPlayerHelper";
-            this.videoPlayerHelper.Size = new System.Drawing.Size(1106, 582);
+            this.videoPlayerHelper.Size = new System.Drawing.Size(785, 495);
             this.videoPlayerHelper.TabIndex = 2;
             this.videoPlayerHelper.videoType = BVOralEndoscopeViewer.VideoStreamType.NO_VIDEO;
             // 
