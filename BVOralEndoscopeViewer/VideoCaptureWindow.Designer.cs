@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoCaptureWindow));
-            this.ToolStrip_Icons = new System.Windows.Forms.ToolStrip();
+            this.toolStrip_Icons = new System.Windows.Forms.ToolStrip();
             this.MicroLensModeBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.NormalModeBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.FigureModeBtn = new System.Windows.Forms.ToolStripButton();
-            this.ToolStrip_Btns = new System.Windows.Forms.ToolStrip();
+            this.toolStrip_Btns = new System.Windows.Forms.ToolStrip();
             this.ToolStripComboBoxResolution = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.SnapshotBtn = new System.Windows.Forms.ToolStripButton();
@@ -43,24 +43,26 @@
             this.RecordingBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SettingBtn = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.listView_browse = new System.Windows.Forms.ListView();
             this.videoPlayerHelper = new BVOralEndoscopeViewer.VideoPlayerHelper();
-            this.ToolStrip_Icons.SuspendLayout();
-            this.ToolStrip_Btns.SuspendLayout();
+            this.toolStrip_Icons.SuspendLayout();
+            this.toolStrip_Btns.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ToolStrip_Icons
+            // toolStrip_Icons
             // 
-            this.ToolStrip_Icons.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_Icons.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MicroLensModeBtn,
             this.toolStripSeparator1,
             this.NormalModeBtn,
             this.toolStripSeparator2,
             this.FigureModeBtn});
-            this.ToolStrip_Icons.Location = new System.Drawing.Point(0, 0);
-            this.ToolStrip_Icons.Name = "ToolStrip_Icons";
-            this.ToolStrip_Icons.Size = new System.Drawing.Size(1106, 25);
-            this.ToolStrip_Icons.TabIndex = 0;
-            this.ToolStrip_Icons.Text = "toolStrip1";
+            this.toolStrip_Icons.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip_Icons.Name = "toolStrip_Icons";
+            this.toolStrip_Icons.Size = new System.Drawing.Size(1106, 25);
+            this.toolStrip_Icons.TabIndex = 0;
+            this.toolStrip_Icons.Text = "toolStrip1";
             // 
             // MicroLensModeBtn
             // 
@@ -108,9 +110,9 @@
             this.FigureModeBtn.Text = "人像模式";
             this.FigureModeBtn.Click += new System.EventHandler(this.ModeBtns_Click);
             // 
-            // ToolStrip_Btns
+            // toolStrip_Btns
             // 
-            this.ToolStrip_Btns.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_Btns.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripComboBoxResolution,
             this.toolStripSeparator3,
             this.SnapshotBtn,
@@ -118,11 +120,11 @@
             this.RecordingBtn,
             this.toolStripSeparator5,
             this.SettingBtn});
-            this.ToolStrip_Btns.Location = new System.Drawing.Point(0, 25);
-            this.ToolStrip_Btns.Name = "ToolStrip_Btns";
-            this.ToolStrip_Btns.Size = new System.Drawing.Size(1106, 25);
-            this.ToolStrip_Btns.TabIndex = 1;
-            this.ToolStrip_Btns.Text = "toolStrip1";
+            this.toolStrip_Btns.Location = new System.Drawing.Point(0, 25);
+            this.toolStrip_Btns.Name = "toolStrip_Btns";
+            this.toolStrip_Btns.Size = new System.Drawing.Size(1106, 25);
+            this.toolStrip_Btns.TabIndex = 1;
+            this.toolStrip_Btns.Text = "toolStrip1";
             // 
             // ToolStripComboBoxResolution
             // 
@@ -146,6 +148,7 @@
             this.SnapshotBtn.Name = "SnapshotBtn";
             this.SnapshotBtn.Size = new System.Drawing.Size(100, 22);
             this.SnapshotBtn.Text = "拍照";
+            this.SnapshotBtn.Click += new System.EventHandler(this.SnapshotBtn_Click);
             // 
             // toolStripSeparator4
             // 
@@ -161,6 +164,7 @@
             this.RecordingBtn.Name = "RecordingBtn";
             this.RecordingBtn.Size = new System.Drawing.Size(100, 22);
             this.RecordingBtn.Text = "录像";
+            this.RecordingBtn.Click += new System.EventHandler(this.RecordingBtn_Click);
             // 
             // toolStripSeparator5
             // 
@@ -177,12 +181,33 @@
             this.SettingBtn.Size = new System.Drawing.Size(100, 22);
             this.SettingBtn.Text = "设置";
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Location = new System.Drawing.Point(0, 610);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(1106, 22);
+            this.statusStrip.TabIndex = 3;
+            this.statusStrip.Text = "StatusStrip";
+            // 
+            // listView_browse
+            // 
+            this.listView_browse.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listView_browse.HideSelection = false;
+            this.listView_browse.Location = new System.Drawing.Point(880, 50);
+            this.listView_browse.Name = "listView_browse";
+            this.listView_browse.Size = new System.Drawing.Size(226, 560);
+            this.listView_browse.TabIndex = 4;
+            this.listView_browse.UseCompatibleStateImageBehavior = false;
+            this.listView_browse.DoubleClick += new System.EventHandler(this.ListView_browse_DoubleClick);
+            // 
             // videoPlayerHelper
             // 
+            this.videoPlayerHelper.AutoSize = true;
             this.videoPlayerHelper.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.videoPlayerHelper.Location = new System.Drawing.Point(23, 100);
+            this.videoPlayerHelper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoPlayerHelper.Location = new System.Drawing.Point(0, 50);
             this.videoPlayerHelper.Name = "videoPlayerHelper";
-            this.videoPlayerHelper.Size = new System.Drawing.Size(785, 495);
+            this.videoPlayerHelper.Size = new System.Drawing.Size(1106, 582);
             this.videoPlayerHelper.TabIndex = 2;
             this.videoPlayerHelper.videoType = BVOralEndoscopeViewer.VideoStreamType.NO_VIDEO;
             // 
@@ -191,18 +216,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 632);
+            this.Controls.Add(this.listView_browse);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.videoPlayerHelper);
-            this.Controls.Add(this.ToolStrip_Btns);
-            this.Controls.Add(this.ToolStrip_Icons);
+            this.Controls.Add(this.toolStrip_Btns);
+            this.Controls.Add(this.toolStrip_Icons);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VideoCaptureWindow";
             this.ShowIcon = false;
             this.Text = "影像采集";
             this.Load += new System.EventHandler(this.VideoCaptureWindow_Load);
-            this.ToolStrip_Icons.ResumeLayout(false);
-            this.ToolStrip_Icons.PerformLayout();
-            this.ToolStrip_Btns.ResumeLayout(false);
-            this.ToolStrip_Btns.PerformLayout();
+            this.toolStrip_Icons.ResumeLayout(false);
+            this.toolStrip_Icons.PerformLayout();
+            this.toolStrip_Btns.ResumeLayout(false);
+            this.toolStrip_Btns.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,13 +237,13 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip ToolStrip_Icons;
+        private System.Windows.Forms.ToolStrip toolStrip_Icons;
         private System.Windows.Forms.ToolStripButton MicroLensModeBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton NormalModeBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton FigureModeBtn;
-        private System.Windows.Forms.ToolStrip ToolStrip_Btns;
+        private System.Windows.Forms.ToolStrip toolStrip_Btns;
         private System.Windows.Forms.ToolStripComboBox ToolStripComboBoxResolution;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton SnapshotBtn;
@@ -225,6 +252,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton SettingBtn;
         private VideoPlayerHelper videoPlayerHelper;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ListView listView_browse;
     }
 }
 

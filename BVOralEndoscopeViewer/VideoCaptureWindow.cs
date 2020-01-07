@@ -160,14 +160,58 @@ namespace BVOralEndoscopeViewer
                 FigureModeBtn.Checked = FigureFlg;
             };
             //上述三个按钮的父控件便是ToolStrip_Icons,所以直接从它进行Invoke
-            ToolStrip_Icons.Invoke(actionDelegate); 
+            toolStrip_Icons.Invoke(actionDelegate); 
         }
 
         private void TakePhoto(object obj)
         {
-
+            if (videoPlayerHelper.IsCurSnapshot)
+            {
+                videoPlayerHelper.ResumeVideo();
+            }
+            else
+            {
+                ShowSnapshot();
+            }
         }
 
-        
+        private void ListView_browse_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
+
+        private void ShowSnapshot()
+        {
+            Action action = () => 
+            {
+                videoPlayerHelper.DisplaySnapshot();
+            };
+            if (videoPlayerHelper.InvokeRequired)
+            {
+                videoPlayerHelper.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
+        private void SnapshotBtn_Click(object sender, EventArgs e)
+        {
+            if (videoPlayerHelper.IsCurSnapshot)
+            {
+                videoPlayerHelper.ResumeVideo();
+            }
+            else
+            {
+                ShowSnapshot();
+            }
+        }
+
+        private void RecordingBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

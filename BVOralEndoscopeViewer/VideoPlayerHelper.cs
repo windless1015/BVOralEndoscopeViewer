@@ -26,12 +26,17 @@ namespace BVOralEndoscopeViewer
         public VideoStreamType videoType { get; set; }
         //视频的名字字符串
         private string deviceMonikerString { get; set; }
+        //当前是否显示的是截图
+        public bool IsCurSnapshot { get; set; }
+        public Bitmap frame { get; set; }
         public VideoPlayerHelper()
         {
             InitializeComponent();
             videoStreamSource = null;
             videoType = VideoStreamType.NO_VIDEO;
             deviceMonikerString = null;
+            IsCurSnapshot = false;
+
         }
 
         //判断视频的类型,usb或者wifi
@@ -57,6 +62,10 @@ namespace BVOralEndoscopeViewer
 
         public void OpenVideoSource()
         {
+            videoStreamSource = null;
+            //把picturebox放在后面,把videosoureplayer放在前面
+            PicBox_DisplayImg.SendToBack();
+            VideoSourcePlayer.BringToFront();
             if (deviceMonikerString == null)
                 return;
             //先关闭
@@ -74,7 +83,32 @@ namespace BVOralEndoscopeViewer
             }
             VideoSourcePlayer.VideoSource = videoStreamSource;
             VideoSourcePlayer.Start();
-
+            IsCurSnapshot = false;
         }
+
+        public void DisplaySnapshot()
+        {
+            PicBox_DisplayImg.BringToFront();
+            VideoSourcePlayer.SendToBack();
+            lock (frame) 
+            {
+                PicBox_DisplayImg.Image = frame;
+            }
+            IsCurSnapshot = true;
+            PicBox_DisplayImg.Show();
+        }
+
+        public void ResumeVideo()
+        {
+            PicBox_DisplayImg.SendToBack();
+            VideoSourcePlayer.BringToFront();
+            IsCurSnapshot = false;
+        }
+
+        private void VideoSourcePlayer_NewFrame(object sender, ref Bitmap image)
+        {
+            frame = image;
+        }
+
     }
 }
