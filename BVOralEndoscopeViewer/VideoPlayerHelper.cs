@@ -29,6 +29,8 @@ namespace BVOralEndoscopeViewer
         //当前是否显示的是截图
         public bool IsCurSnapshot { get; set; }
         public Bitmap frame { get; set; }
+
+        public event NewFrameGeneratedHandler NewFrameGenerated;
         public VideoPlayerHelper()
         {
             InitializeComponent();
@@ -76,14 +78,27 @@ namespace BVOralEndoscopeViewer
                 VideoCapabilities[] videoCapabilities = ((VideoCaptureDevice)videoStreamSource).VideoCapabilities;
                 ((VideoCaptureDevice)videoStreamSource).VideoResolution = videoCapabilities[0];
                 ((VideoCaptureDevice)videoStreamSource).SnapshotResolution = videoCapabilities[0];
+                //设置帧大小
+                frame = new Bitmap(videoCapabilities[0].FrameSize.Width, videoCapabilities[0].FrameSize.Height);
             }
             else if (videoType == VideoStreamType.WIFI)
             {
                 videoStreamSource = new MJPEGStream(deviceMonikerString);
+                frame = new Bitmap(1280, 720);
             }
             VideoSourcePlayer.VideoSource = videoStreamSource;
             VideoSourcePlayer.Start();
             IsCurSnapshot = false;
+        }
+
+        public void CloseVideoSource()
+        {
+            if (videoStreamSource != null)
+            {
+                frame.Dispose();
+                videoStreamSource.SignalToStop();
+                videoStreamSource.Stop();
+            }
         }
 
         public void DisplaySnapshot()
@@ -107,8 +122,11 @@ namespace BVOralEndoscopeViewer
 
         private void VideoSourcePlayer_NewFrame(object sender, ref Bitmap image)
         {
-            frame = image;
+            frame = (Bitmap)image.Clone();//深拷贝
+
         }
+
+        public delegate void NewFrameGeneratedHandler(object sender, ref Bitmap image);
 
     }
 }
