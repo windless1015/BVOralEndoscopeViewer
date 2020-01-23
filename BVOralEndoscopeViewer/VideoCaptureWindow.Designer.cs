@@ -44,14 +44,15 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SettingBtn = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.listView_browse = new System.Windows.Forms.ListView();
             this.videoPlayerHelper = new BVOralEndoscopeViewer.VideoPlayerHelper();
+            this.imageVideoBrowserSideBar = new BVOralEndoscopeViewer.ImageVideoBrowserSideBar();
             this.toolStrip_Icons.SuspendLayout();
             this.toolStrip_Btns.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip_Icons
             // 
+            this.toolStrip_Icons.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip_Icons.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MicroLensModeBtn,
             this.toolStripSeparator1,
@@ -60,7 +61,7 @@
             this.FigureModeBtn});
             this.toolStrip_Icons.Location = new System.Drawing.Point(0, 0);
             this.toolStrip_Icons.Name = "toolStrip_Icons";
-            this.toolStrip_Icons.Size = new System.Drawing.Size(1106, 25);
+            this.toolStrip_Icons.Size = new System.Drawing.Size(1475, 25);
             this.toolStrip_Icons.TabIndex = 0;
             this.toolStrip_Icons.Text = "toolStrip1";
             // 
@@ -112,6 +113,7 @@
             // 
             // toolStrip_Btns
             // 
+            this.toolStrip_Btns.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip_Btns.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripComboBoxResolution,
             this.toolStripSeparator3,
@@ -122,7 +124,7 @@
             this.SettingBtn});
             this.toolStrip_Btns.Location = new System.Drawing.Point(0, 25);
             this.toolStrip_Btns.Name = "toolStrip_Btns";
-            this.toolStrip_Btns.Size = new System.Drawing.Size(1106, 25);
+            this.toolStrip_Btns.Size = new System.Drawing.Size(1475, 28);
             this.toolStrip_Btns.TabIndex = 1;
             this.toolStrip_Btns.Text = "toolStrip1";
             // 
@@ -131,12 +133,12 @@
             this.ToolStripComboBoxResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ToolStripComboBoxResolution.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.ToolStripComboBoxResolution.Name = "ToolStripComboBoxResolution";
-            this.ToolStripComboBoxResolution.Size = new System.Drawing.Size(121, 25);
+            this.ToolStripComboBoxResolution.Size = new System.Drawing.Size(160, 28);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
             // 
             // SnapshotBtn
             // 
@@ -153,7 +155,7 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
             // 
             // RecordingBtn
             // 
@@ -169,7 +171,7 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 28);
             // 
             // SettingBtn
             // 
@@ -183,45 +185,47 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.Location = new System.Drawing.Point(0, 610);
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Location = new System.Drawing.Point(0, 768);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1106, 22);
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip.Size = new System.Drawing.Size(1475, 22);
             this.statusStrip.TabIndex = 3;
             this.statusStrip.Text = "StatusStrip";
-            // 
-            // listView_browse
-            // 
-            this.listView_browse.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listView_browse.HideSelection = false;
-            this.listView_browse.Location = new System.Drawing.Point(880, 50);
-            this.listView_browse.Name = "listView_browse";
-            this.listView_browse.Size = new System.Drawing.Size(226, 560);
-            this.listView_browse.TabIndex = 4;
-            this.listView_browse.UseCompatibleStateImageBehavior = false;
-            this.listView_browse.DoubleClick += new System.EventHandler(this.ListView_browse_DoubleClick);
             // 
             // videoPlayerHelper
             // 
             this.videoPlayerHelper.AutoSize = true;
             this.videoPlayerHelper.BackColor = System.Drawing.SystemColors.ControlDark;
             this.videoPlayerHelper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoPlayerHelper.Location = new System.Drawing.Point(0, 50);
+            this.videoPlayerHelper.frame = null;
+            this.videoPlayerHelper.IsCurSnapshot = false;
+            this.videoPlayerHelper.Location = new System.Drawing.Point(0, 53);
+            this.videoPlayerHelper.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.videoPlayerHelper.Name = "videoPlayerHelper";
-            this.videoPlayerHelper.Size = new System.Drawing.Size(1106, 582);
+            this.videoPlayerHelper.Size = new System.Drawing.Size(1475, 737);
             this.videoPlayerHelper.TabIndex = 2;
             this.videoPlayerHelper.videoType = BVOralEndoscopeViewer.VideoStreamType.NO_VIDEO;
             // 
+            // imageVideoBrowserSideBar
+            // 
+            this.imageVideoBrowserSideBar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.imageVideoBrowserSideBar.Location = new System.Drawing.Point(1230, 53);
+            this.imageVideoBrowserSideBar.Name = "imageVideoBrowserSideBar";
+            this.imageVideoBrowserSideBar.Size = new System.Drawing.Size(245, 715);
+            this.imageVideoBrowserSideBar.TabIndex = 4;
+            // 
             // VideoCaptureWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 632);
-            this.Controls.Add(this.listView_browse);
+            this.ClientSize = new System.Drawing.Size(1475, 790);
+            this.Controls.Add(this.imageVideoBrowserSideBar);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.videoPlayerHelper);
             this.Controls.Add(this.toolStrip_Btns);
             this.Controls.Add(this.toolStrip_Icons);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "VideoCaptureWindow";
             this.ShowIcon = false;
             this.Text = "影像采集";
@@ -253,7 +257,7 @@
         private System.Windows.Forms.ToolStripButton SettingBtn;
         private VideoPlayerHelper videoPlayerHelper;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ListView listView_browse;
+        private ImageVideoBrowserSideBar imageVideoBrowserSideBar;
     }
 }
 

@@ -138,6 +138,12 @@
     <Compile Include="AVI\AviWriter.cs" />
     <Compile Include="AVI\H264Writer.cs" />
     <Compile Include="AVI\RiffFile.cs" />
+    <Compile Include="ImageVideoBrowserSideBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ImageVideoBrowserSideBar.Designer.cs">
+      <DependentUpon>ImageVideoBrowserSideBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility.cs" />
     <Compile Include="VideoCaptureWindow.cs">
       <SubType>Form</SubType>
@@ -156,6 +162,9 @@
     <Compile Include="VideoPlayerHelper.Designer.cs">
       <DependentUpon>VideoPlayerHelper.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ImageVideoBrowserSideBar.resx">
+      <DependentUpon>ImageVideoBrowserSideBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VideoCaptureWindow.resx">
       <DependentUpon>VideoCaptureWindow.cs</DependentUpon>
     </EmbeddedResource>

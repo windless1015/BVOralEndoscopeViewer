@@ -36,6 +36,10 @@ namespace BVOralEndoscopeViewer
         ////////////////////////////////界面逻辑事务////////////////////////////////////////////
         private void VideoCaptureWindow_Load(object sender, EventArgs e)
         {
+            //设置侧面显示栏的数据路径
+            imageVideoBrowserSideBar.FileDataPath = "F:/projects/Bangvo/images";
+            imageVideoBrowserSideBar.Reorder();
+            return;
             videoPlayerHelper.CheckVideoType();
             videoType = videoPlayerHelper.videoType;
             if (videoType == VideoStreamType.USB)
