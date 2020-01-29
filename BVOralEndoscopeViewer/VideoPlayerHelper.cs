@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accord.Video;
 using Accord.Video.DirectShow;
+using Accord.Video.FFMPEG;
 
 namespace BVOralEndoscopeViewer
 {
@@ -16,7 +17,8 @@ namespace BVOralEndoscopeViewer
     {
         USB = 0,
         WIFI = 1,
-        NO_VIDEO = 2
+        LOCAL_FILE = 2,
+        NO_VIDEO = 3
     }
     public partial class VideoPlayerHelper : UserControl
     {
@@ -34,6 +36,8 @@ namespace BVOralEndoscopeViewer
         public VideoPlayerHelper()
         {
             InitializeComponent();
+            //把picturebox的显示图片模式设置为铺满模式
+            PicBox_DisplayImg.SizeMode = PictureBoxSizeMode.StretchImage;
             videoStreamSource = null;
             videoType = VideoStreamType.NO_VIDEO;
             deviceMonikerString = null;
@@ -71,20 +75,26 @@ namespace BVOralEndoscopeViewer
             if (deviceMonikerString == null)
                 return;
             //先关闭
-
-            if (videoType == VideoStreamType.USB)
+            switch (videoType)
             {
-                videoStreamSource = new VideoCaptureDevice(deviceMonikerString);
-                VideoCapabilities[] videoCapabilities = ((VideoCaptureDevice)videoStreamSource).VideoCapabilities;
-                ((VideoCaptureDevice)videoStreamSource).VideoResolution = videoCapabilities[0];
-                ((VideoCaptureDevice)videoStreamSource).SnapshotResolution = videoCapabilities[0];
-                //设置帧大小
-                frame = new Bitmap(videoCapabilities[0].FrameSize.Width, videoCapabilities[0].FrameSize.Height);
-            }
-            else if (videoType == VideoStreamType.WIFI)
-            {
-                videoStreamSource = new MJPEGStream(deviceMonikerString);
-                frame = new Bitmap(1280, 720);
+                case VideoStreamType.USB:
+                    videoStreamSource = new VideoCaptureDevice(deviceMonikerString);
+                    VideoCapabilities[] videoCapabilities = ((VideoCaptureDevice)videoStreamSource).VideoCapabilities;
+                    ((VideoCaptureDevice)videoStreamSource).VideoResolution = videoCapabilities[0];
+                    ((VideoCaptureDevice)videoStreamSource).SnapshotResolution = videoCapabilities[0];
+                    //设置帧大小
+                    frame = new Bitmap(videoCapabilities[0].FrameSize.Width, videoCapabilities[0].FrameSize.Height);
+                    break;
+                case VideoStreamType.WIFI:
+                    videoStreamSource = new MJPEGStream(deviceMonikerString);
+                    frame = new Bitmap(1280, 720);
+                    break;
+                case VideoStreamType.LOCAL_FILE:
+                    videoStreamSource = new VideoFileSource(deviceMonikerString);
+                    frame = new Bitmap(1280, 720);
+                    break;
+                default:
+                    break;
             }
             VideoSourcePlayer.VideoSource = videoStreamSource;
             VideoSourcePlayer.Start();
@@ -101,23 +111,48 @@ namespace BVOralEndoscopeViewer
             }
         }
 
-        public void DisplaySnapshot()
+        public void DisplaySnapshot(ref Bitmap curFrame)
         {
             PicBox_DisplayImg.BringToFront();
             VideoSourcePlayer.SendToBack();
-            lock (frame) 
+            lock (curFrame) 
             {
-                PicBox_DisplayImg.Image = frame;
+                PicBox_DisplayImg.Image = curFrame;
             }
             IsCurSnapshot = true;
             PicBox_DisplayImg.Show();
         }
+
+        public void PlayVideoFile(ref string path)
+        {
+            CloseVideoSource();
+            //PicBox_DisplayImg.SendToBack();
+            //VideoSourcePlayer.BringToFront();
+            deviceMonikerString = path;
+            videoType = VideoStreamType.LOCAL_FILE;
+            OpenVideoSource();
+        }
+
 
         public void ResumeVideo()
         {
             PicBox_DisplayImg.SendToBack();
             VideoSourcePlayer.BringToFront();
             IsCurSnapshot = false;
+        }
+
+        public void ShowImageOrVideo(string absPath, string extension)
+        {
+            if (extension == "jpeg" || extension == "jpg")
+            {
+                Image img = Image.FromFile(absPath);
+                Bitmap bm = new Bitmap(img);
+                DisplaySnapshot(ref bm);
+            }
+            else if (extension == "avi" || extension == "mp4")
+            {
+                PlayVideoFile(ref absPath);
+            }
         }
 
         private void VideoSourcePlayer_NewFrame(object sender, ref Bitmap image)

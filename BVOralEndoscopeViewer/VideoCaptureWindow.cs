@@ -30,6 +30,9 @@ namespace BVOralEndoscopeViewer
         {
             InitializeComponent();
             syncContext = SynchronizationContext.Current;
+            //把侧边栏双击的事件绑定到videoPlayerHelper的显示图片和视频的委托事件中去.
+            imageVideoBrowserSideBar.DisplaySelectedItem += 
+                new ImageVideoBrowserSideBar.DisplaySelectedItemHandler(videoPlayerHelper.ShowImageOrVideo);
         }
 
 
@@ -189,8 +192,10 @@ namespace BVOralEndoscopeViewer
         {
             Action action = () => 
             {
-                videoPlayerHelper.DisplaySnapshot();
+                Bitmap bm = new Bitmap(videoPlayerHelper.frame);
+                videoPlayerHelper.DisplaySnapshot(ref bm);
             };
+
             if (videoPlayerHelper.InvokeRequired)
             {
                 videoPlayerHelper.Invoke(action);

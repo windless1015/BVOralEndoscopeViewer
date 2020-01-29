@@ -42,7 +42,7 @@
             this.ImgVideoListView.Size = new System.Drawing.Size(262, 549);
             this.ImgVideoListView.TabIndex = 0;
             this.ImgVideoListView.UseCompatibleStateImageBehavior = false;
-            this.ImgVideoListView.DoubleClick += new System.EventHandler(this.ImgVideoListView_DoubleClick);
+            this.ImgVideoListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ImgVideoListView_MouseDoubleClick);
             // 
             // imageList
             // 

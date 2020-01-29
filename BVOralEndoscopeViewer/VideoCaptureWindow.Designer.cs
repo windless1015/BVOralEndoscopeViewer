@@ -44,8 +44,8 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SettingBtn = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.videoPlayerHelper = new BVOralEndoscopeViewer.VideoPlayerHelper();
             this.imageVideoBrowserSideBar = new BVOralEndoscopeViewer.ImageVideoBrowserSideBar();
+            this.videoPlayerHelper = new BVOralEndoscopeViewer.VideoPlayerHelper();
             this.toolStrip_Icons.SuspendLayout();
             this.toolStrip_Btns.SuspendLayout();
             this.SuspendLayout();
@@ -193,6 +193,15 @@
             this.statusStrip.TabIndex = 3;
             this.statusStrip.Text = "StatusStrip";
             // 
+            // imageVideoBrowserSideBar
+            // 
+            this.imageVideoBrowserSideBar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.imageVideoBrowserSideBar.FileDataPath = null;
+            this.imageVideoBrowserSideBar.Location = new System.Drawing.Point(1215, 53);
+            this.imageVideoBrowserSideBar.Name = "imageVideoBrowserSideBar";
+            this.imageVideoBrowserSideBar.Size = new System.Drawing.Size(260, 715);
+            this.imageVideoBrowserSideBar.TabIndex = 4;
+            // 
             // videoPlayerHelper
             // 
             this.videoPlayerHelper.AutoSize = true;
@@ -201,19 +210,11 @@
             this.videoPlayerHelper.frame = null;
             this.videoPlayerHelper.IsCurSnapshot = false;
             this.videoPlayerHelper.Location = new System.Drawing.Point(0, 53);
-            this.videoPlayerHelper.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.videoPlayerHelper.Margin = new System.Windows.Forms.Padding(5);
             this.videoPlayerHelper.Name = "videoPlayerHelper";
             this.videoPlayerHelper.Size = new System.Drawing.Size(1475, 737);
             this.videoPlayerHelper.TabIndex = 2;
             this.videoPlayerHelper.videoType = BVOralEndoscopeViewer.VideoStreamType.NO_VIDEO;
-            // 
-            // imageVideoBrowserSideBar
-            // 
-            this.imageVideoBrowserSideBar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.imageVideoBrowserSideBar.Location = new System.Drawing.Point(1230, 53);
-            this.imageVideoBrowserSideBar.Name = "imageVideoBrowserSideBar";
-            this.imageVideoBrowserSideBar.Size = new System.Drawing.Size(245, 715);
-            this.imageVideoBrowserSideBar.TabIndex = 4;
             // 
             // VideoCaptureWindow
             // 
