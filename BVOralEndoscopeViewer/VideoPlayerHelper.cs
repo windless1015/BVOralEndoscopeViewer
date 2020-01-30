@@ -157,7 +157,7 @@ namespace BVOralEndoscopeViewer
 
         private void VideoSourcePlayer_NewFrame(object sender, ref Bitmap image)
         {
-            frame = (Bitmap)image.Clone();//深拷贝
+            //frame = (Bitmap)image.Clone();//深拷贝
 
         }
 
