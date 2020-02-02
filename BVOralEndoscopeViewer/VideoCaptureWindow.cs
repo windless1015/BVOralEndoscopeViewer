@@ -182,12 +182,6 @@ namespace BVOralEndoscopeViewer
             }
         }
 
-        private void ListView_browse_DoubleClick(object sender, EventArgs e)
-        {
-            
-        }
-
-
         private void ShowSnapshot()
         {
             Action action = () => 

@@ -151,7 +151,11 @@ namespace BVOralEndoscopeViewer
             }
             else if (extension == "avi" || extension == "mp4")
             {
-                PlayVideoFile(ref absPath);
+                //PlayVideoFile(ref absPath);
+                RecordVideoPlayer recordPlayer = new RecordVideoPlayer();
+                recordPlayer.videoFilePath = absPath;
+                recordPlayer.Show();
+                recordPlayer.Play();
             }
         }
 
