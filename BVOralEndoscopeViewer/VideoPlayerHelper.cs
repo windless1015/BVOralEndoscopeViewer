@@ -31,7 +31,9 @@ namespace BVOralEndoscopeViewer
         //当前是否显示的是截图
         public bool IsCurSnapshot { get; set; }
         public Bitmap frame { get; set; }
-
+        
+        private string SnapShotImgPath = "";
+        private Bitmap SnapShotImg;
         public event NewFrameGeneratedHandler NewFrameGenerated;
         public VideoPlayerHelper()
         {
@@ -141,22 +143,25 @@ namespace BVOralEndoscopeViewer
             IsCurSnapshot = false;
         }
 
-        public void ShowImageOrVideo(string absPath, string extension)
+        public void ShowSnapshot(string absPath, string extension)
         {
             if (extension == "jpeg" || extension == "jpg")
             {
-                Image img = Image.FromFile(absPath);
-                Bitmap bm = new Bitmap(img);
-                DisplaySnapshot(ref bm);
+                bool res = string.Equals(SnapShotImgPath, absPath);
+                if (res == false)
+                {
+                    if (SnapShotImg != null)
+                    {
+                        SnapShotImg.Dispose();//先释放上次的bitmap的内存
+                    }
+                    Image img = Image.FromFile(absPath);
+                    SnapShotImg = new Bitmap(img);
+                    DisplaySnapshot(ref SnapShotImg);
+                    SnapShotImgPath = absPath;
+                    img.Dispose();  //image 释放
+                }
             }
-            else if (extension == "avi" || extension == "mp4")
-            {
-                //PlayVideoFile(ref absPath);
-                RecordVideoPlayer recordPlayer = new RecordVideoPlayer();
-                recordPlayer.videoFilePath = absPath;
-                recordPlayer.Show();
-                recordPlayer.Play();
-            }
+
         }
 
         private void VideoSourcePlayer_NewFrame(object sender, ref Bitmap image)

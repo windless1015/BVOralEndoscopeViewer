@@ -26,13 +26,32 @@ namespace BVOralEndoscopeViewer
         private SerialPortHelper serialDevice = null;
         private SimpleTcpClient socketClient = null;
         private VideoStreamType videoType = VideoStreamType.NO_VIDEO;
+        RecordVideoPlayer recordPlayer = new RecordVideoPlayer();
+        
         public VideoCaptureWindow()
         {
             InitializeComponent();
             syncContext = SynchronizationContext.Current;
-            //把侧边栏双击的事件绑定到videoPlayerHelper的显示图片和视频的委托事件中去.
+            //把侧边栏双击的事件绑定到videoPlayerHelper的显示图片和录像视频播放的的委托事件中去.
             imageVideoBrowserSideBar.DisplaySelectedItem += 
-                new ImageVideoBrowserSideBar.DisplaySelectedItemHandler(videoPlayerHelper.ShowImageOrVideo);
+                new ImageVideoBrowserSideBar.DisplaySelectedItemHandler(videoPlayerHelper.ShowSnapshot);
+            imageVideoBrowserSideBar.DisplaySelectedItem +=
+                new ImageVideoBrowserSideBar.DisplaySelectedItemHandler(PlayRecordVideo);
+        }
+
+        public void PlayRecordVideo(string absPath, string extension)
+        {
+            if (extension == "avi" || extension == "mp4")
+            {
+                recordPlayer.SetMedia(absPath);
+                recordPlayer.StartPosition = FormStartPosition.CenterScreen;
+                recordPlayer.BringToFront();
+
+                recordPlayer.Show();
+
+                recordPlayer.Play();
+                
+            }
         }
 
 
@@ -216,5 +235,6 @@ namespace BVOralEndoscopeViewer
         {
             
         }
+
     }
 }

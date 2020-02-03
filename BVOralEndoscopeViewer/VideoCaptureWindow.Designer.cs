@@ -251,6 +251,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "VideoCaptureWindow";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "影像采集";
             this.Load += new System.EventHandler(this.VideoCaptureWindow_Load);
             this.toolStrip_Icons.ResumeLayout(false);
