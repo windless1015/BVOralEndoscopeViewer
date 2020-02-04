@@ -61,7 +61,7 @@ namespace BVOralEndoscopeViewer
             //设置侧面显示栏的数据路径
             imageVideoBrowserSideBar.FileDataPath = "F:/projects/Bangvo/images";
             imageVideoBrowserSideBar.Reorder();
-            return;
+
             videoPlayerHelper.CheckVideoType();
             videoType = videoPlayerHelper.videoType;
             if (videoType == VideoStreamType.USB)
@@ -205,7 +205,7 @@ namespace BVOralEndoscopeViewer
         {
             Action action = () => 
             {
-                Bitmap bm = new Bitmap(videoPlayerHelper.frame);
+                Bitmap bm = videoPlayerHelper.GetCurrentVideoFrame();
                 videoPlayerHelper.DisplaySnapshot(ref bm);
             };
 

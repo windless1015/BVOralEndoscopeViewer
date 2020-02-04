@@ -101,6 +101,7 @@ namespace BVOralEndoscopeViewer
         private void RecordVideoPlayer_FormClosing(object sender, FormClosingEventArgs e)
         {
             vlcControl.Stop();
+            trackBar_play.Value = 0;
             e.Cancel = true; //不真正关闭窗体,仅仅是隐藏
             this.Hide();
         }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using Accord.Video;
 using Accord.Video.DirectShow;
@@ -125,17 +118,6 @@ namespace BVOralEndoscopeViewer
             PicBox_DisplayImg.Show();
         }
 
-        public void PlayVideoFile(ref string path)
-        {
-            CloseVideoSource();
-            //PicBox_DisplayImg.SendToBack();
-            //VideoSourcePlayer.BringToFront();
-            deviceMonikerString = path;
-            videoType = VideoStreamType.LOCAL_FILE;
-            OpenVideoSource();
-        }
-
-
         public void ResumeVideo()
         {
             PicBox_DisplayImg.SendToBack();
@@ -167,7 +149,12 @@ namespace BVOralEndoscopeViewer
         private void VideoSourcePlayer_NewFrame(object sender, ref Bitmap image)
         {
             //frame = (Bitmap)image.Clone();//深拷贝
+            //frame = image;
+        }
 
+        public Bitmap GetCurrentVideoFrame()
+        {
+            return VideoSourcePlayer.GetCurrentVideoFrame();
         }
 
         public delegate void NewFrameGeneratedHandler(object sender, ref Bitmap image);
