@@ -7,7 +7,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.Drawing.Imaging;
-using Accord.Video.FFMPEG;
+//using Accord.Video.FFMPEG;
 
 namespace BVOralEndoscopeViewer
 {
@@ -130,13 +130,13 @@ namespace BVOralEndoscopeViewer
             }
             else if (curFileType == FileTypeEnum.VIDEO)
             {
-                VideoFileReader videoFileReader = new VideoFileReader();
-                videoFileReader.Open(path);
-                Bitmap videoFrame = videoFileReader.ReadVideoFrame();
-                Image myThumbnail = videoFrame.GetThumbnailImage(thumbnailWidth, thumbnailHeight, () => { return false; }, IntPtr.Zero);
-                thumbnail = new Bitmap(myThumbnail);
-                videoFrame.Dispose();
-                myThumbnail.Dispose();
+                //VideoFileReader videoFileReader = new VideoFileReader();
+                //videoFileReader.Open(path);
+                //Bitmap videoFrame = videoFileReader.ReadVideoFrame();
+                //Image myThumbnail = videoFrame.GetThumbnailImage(thumbnailWidth, thumbnailHeight, () => { return false; }, IntPtr.Zero);
+                //thumbnail = new Bitmap(myThumbnail);
+                //videoFrame.Dispose();
+                //myThumbnail.Dispose();
             }
 
         }

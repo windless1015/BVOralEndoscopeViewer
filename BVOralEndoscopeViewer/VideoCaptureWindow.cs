@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using SimpleTCP;
+using Accord.Video.FFMPEG;
 
 namespace BVOralEndoscopeViewer
 {
@@ -27,7 +28,7 @@ namespace BVOralEndoscopeViewer
         private SimpleTcpClient socketClient = null;
         private VideoStreamType videoType = VideoStreamType.NO_VIDEO;
         private RecordVideoPlayer recordPlayer = new RecordVideoPlayer();
-        ///private OpenH264Encoder h264Encoder;
+
 
 
         public VideoCaptureWindow()
