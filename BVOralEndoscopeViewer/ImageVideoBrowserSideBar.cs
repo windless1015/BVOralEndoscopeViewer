@@ -125,14 +125,18 @@ namespace BVOralEndoscopeViewer
                 Image img = Image.FromFile(path);
                 Image myThumbnail = img.GetThumbnailImage(thumbnailWidth, thumbnailHeight, () => { return false; }, IntPtr.Zero);
                 thumbnail = new Bitmap(myThumbnail);
+                img.Dispose();
+                myThumbnail.Dispose();
             }
             else if (curFileType == FileTypeEnum.VIDEO)
             {
                 VideoFileReader videoFileReader = new VideoFileReader();
                 videoFileReader.Open(path);
-                Bitmap videoFrame  = videoFileReader.ReadVideoFrame();
+                Bitmap videoFrame = videoFileReader.ReadVideoFrame();
                 Image myThumbnail = videoFrame.GetThumbnailImage(thumbnailWidth, thumbnailHeight, () => { return false; }, IntPtr.Zero);
                 thumbnail = new Bitmap(myThumbnail);
+                videoFrame.Dispose();
+                myThumbnail.Dispose();
             }
 
         }

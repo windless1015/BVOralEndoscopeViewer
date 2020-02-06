@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using Accord.Video;
 using Accord.Video.DirectShow;
-using Accord.Video.FFMPEG;
 
 namespace BVOralEndoscopeViewer
 {
@@ -10,7 +9,6 @@ namespace BVOralEndoscopeViewer
     {
         USB = 0,
         WIFI = 1,
-        LOCAL_FILE = 2,
         NO_VIDEO = 3
     }
     public partial class VideoPlayerHelper : UserControl
@@ -84,10 +82,6 @@ namespace BVOralEndoscopeViewer
                     videoStreamSource = new MJPEGStream(deviceMonikerString);
                     frame = new Bitmap(1280, 720);
                     break;
-                case VideoStreamType.LOCAL_FILE:
-                    videoStreamSource = new VideoFileSource(deviceMonikerString);
-                    frame = new Bitmap(1280, 720);
-                    break;
                 default:
                     break;
             }
@@ -150,6 +144,7 @@ namespace BVOralEndoscopeViewer
         {
             //frame = (Bitmap)image.Clone();//深拷贝
             //frame = image;
+            NewFrameGenerated(ref image);
         }
 
         public Bitmap GetCurrentVideoFrame()
@@ -157,7 +152,12 @@ namespace BVOralEndoscopeViewer
             return VideoSourcePlayer.GetCurrentVideoFrame();
         }
 
-        public delegate void NewFrameGeneratedHandler(object sender, ref Bitmap image);
+        public bool IsPlaying()
+        {
+            return VideoSourcePlayer.IsRunning;
+        }
+
+        public delegate void NewFrameGeneratedHandler(ref Bitmap image);
 
     }
 }

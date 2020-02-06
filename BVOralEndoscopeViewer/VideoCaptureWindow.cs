@@ -26,8 +26,10 @@ namespace BVOralEndoscopeViewer
         private SerialPortHelper serialDevice = null;
         private SimpleTcpClient socketClient = null;
         private VideoStreamType videoType = VideoStreamType.NO_VIDEO;
-        RecordVideoPlayer recordPlayer = new RecordVideoPlayer();
-        
+        private RecordVideoPlayer recordPlayer = new RecordVideoPlayer();
+        ///private OpenH264Encoder h264Encoder;
+
+
         public VideoCaptureWindow()
         {
             InitializeComponent();
@@ -82,7 +84,16 @@ namespace BVOralEndoscopeViewer
             }
             videoPlayerHelper.OpenVideoSource();
 
+            string aviFilePath = "F:/projects/Bangvo/images/test.avi";
+            //h264Encoder = new OpenH264Encoder(aviFilePath, 30);
+            //h264Encoder.videoSize = new Size(1280, 720);
+
+            //videoPlayerHelper.NewFrameGenerated += 
+                //new VideoPlayerHelper.NewFrameGeneratedHandler(h264Encoder.Encode);
+            //videoPlayerHelper.NewFrameGenerated += h264Encoder.Encode;
         }
+
+
 
         private void ModeBtns_Click(object sender, EventArgs e)
         {
@@ -233,7 +244,17 @@ namespace BVOralEndoscopeViewer
 
         private void RecordingBtn_Click(object sender, EventArgs e)
         {
-            
+            if (RecordingBtn.Text == "录像")
+            {
+                RecordingBtn.Text = "停止";
+                //h264Encoder.IsRecording = true;
+            }
+            else
+            {
+                //h264Encoder.IsRecording = false;
+                RecordingBtn.Text = "录像";
+                //h264Encoder.Close();
+            }
         }
 
     }
