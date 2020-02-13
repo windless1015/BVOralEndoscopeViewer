@@ -22,7 +22,8 @@ namespace BVOralEndoscopeViewer
         //当前是否显示的是截图
         public bool IsCurSnapshot { get; set; }
         public Bitmap frame { get; set; }
-        
+        public bool isPlayingVideo { get; set; }
+
         private string SnapShotImgPath = "";
         private Bitmap SnapShotImg;
         public event NewFrameGeneratedHandler NewFrameGenerated;
@@ -87,6 +88,7 @@ namespace BVOralEndoscopeViewer
             }
             VideoSourcePlayer.VideoSource = videoStreamSource;
             VideoSourcePlayer.Start();
+            isPlayingVideo = VideoSourcePlayer.IsRunning;
             IsCurSnapshot = false;
         }
 
@@ -98,6 +100,7 @@ namespace BVOralEndoscopeViewer
                 videoStreamSource.SignalToStop();
                 videoStreamSource.Stop();
             }
+            isPlayingVideo = videoStreamSource.IsRunning;
         }
 
         public void DisplaySnapshot(ref Bitmap curFrame)
@@ -142,9 +145,8 @@ namespace BVOralEndoscopeViewer
 
         private void VideoSourcePlayer_NewFrame(object sender, ref Bitmap image)
         {
-            //frame = (Bitmap)image.Clone();//深拷贝
             //frame = image;
-            NewFrameGenerated(ref image);
+            NewFrameGenerated(image);
         }
 
         public Bitmap GetCurrentVideoFrame()
@@ -157,7 +159,7 @@ namespace BVOralEndoscopeViewer
             return VideoSourcePlayer.IsRunning;
         }
 
-        public delegate void NewFrameGeneratedHandler(ref Bitmap image);
+        public delegate void NewFrameGeneratedHandler(Bitmap image);
 
     }
 }

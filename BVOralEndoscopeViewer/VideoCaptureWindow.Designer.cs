@@ -44,9 +44,9 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.SettingBtn = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.imageVideoBrowserSideBar = new BVOralEndoscopeViewer.ImageVideoBrowserSideBar();
-            this.videoPlayerHelper = new BVOralEndoscopeViewer.VideoPlayerHelper();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.videoPlayerHelper = new BVOralEndoscopeViewer.VideoPlayerHelper();
+            this.imageVideoBrowserSideBar = new BVOralEndoscopeViewer.ImageVideoBrowserSideBar();
             this.toolStrip_Icons.SuspendLayout();
             this.toolStrip_Btns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
@@ -198,30 +198,6 @@
             this.statusStrip.TabIndex = 3;
             this.statusStrip.Text = "StatusStrip";
             // 
-            // imageVideoBrowserSideBar
-            // 
-            this.imageVideoBrowserSideBar.AutoSize = true;
-            this.imageVideoBrowserSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageVideoBrowserSideBar.FileDataPath = null;
-            this.imageVideoBrowserSideBar.Location = new System.Drawing.Point(0, 0);
-            this.imageVideoBrowserSideBar.Name = "imageVideoBrowserSideBar";
-            this.imageVideoBrowserSideBar.Size = new System.Drawing.Size(271, 715);
-            this.imageVideoBrowserSideBar.TabIndex = 4;
-            // 
-            // videoPlayerHelper
-            // 
-            this.videoPlayerHelper.AutoSize = true;
-            this.videoPlayerHelper.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.videoPlayerHelper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoPlayerHelper.frame = null;
-            this.videoPlayerHelper.IsCurSnapshot = false;
-            this.videoPlayerHelper.Location = new System.Drawing.Point(0, 0);
-            this.videoPlayerHelper.Margin = new System.Windows.Forms.Padding(5);
-            this.videoPlayerHelper.Name = "videoPlayerHelper";
-            this.videoPlayerHelper.Size = new System.Drawing.Size(1200, 715);
-            this.videoPlayerHelper.TabIndex = 2;
-            this.videoPlayerHelper.videoType = BVOralEndoscopeViewer.VideoStreamType.NO_VIDEO;
-            // 
             // splitContainer
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -236,8 +212,31 @@
             // 
             this.splitContainer.Panel2.Controls.Add(this.imageVideoBrowserSideBar);
             this.splitContainer.Size = new System.Drawing.Size(1475, 715);
-            this.splitContainer.SplitterDistance = 1200;
-            this.splitContainer.TabIndex = 5;
+            this.splitContainer.SplitterDistance = 1210;
+            this.splitContainer.TabIndex = 0;
+            // 
+            // videoPlayerHelper
+            // 
+            this.videoPlayerHelper.AutoSize = true;
+            this.videoPlayerHelper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoPlayerHelper.frame = null;
+            this.videoPlayerHelper.IsCurSnapshot = false;
+            this.videoPlayerHelper.Location = new System.Drawing.Point(0, 0);
+            this.videoPlayerHelper.Margin = new System.Windows.Forms.Padding(4);
+            this.videoPlayerHelper.Name = "videoPlayerHelper";
+            this.videoPlayerHelper.Size = new System.Drawing.Size(1210, 715);
+            this.videoPlayerHelper.TabIndex = 0;
+            this.videoPlayerHelper.videoType = BVOralEndoscopeViewer.VideoStreamType.NO_VIDEO;
+            // 
+            // imageVideoBrowserSideBar
+            // 
+            this.imageVideoBrowserSideBar.AutoSize = true;
+            this.imageVideoBrowserSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageVideoBrowserSideBar.FileDataPath = null;
+            this.imageVideoBrowserSideBar.Location = new System.Drawing.Point(0, 0);
+            this.imageVideoBrowserSideBar.Name = "imageVideoBrowserSideBar";
+            this.imageVideoBrowserSideBar.Size = new System.Drawing.Size(261, 715);
+            this.imageVideoBrowserSideBar.TabIndex = 0;
             // 
             // VideoCaptureWindow
             // 
@@ -285,10 +284,10 @@
         private System.Windows.Forms.ToolStripButton RecordingBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton SettingBtn;
-        private VideoPlayerHelper videoPlayerHelper;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private ImageVideoBrowserSideBar imageVideoBrowserSideBar;
         private System.Windows.Forms.SplitContainer splitContainer;
+        private ImageVideoBrowserSideBar imageVideoBrowserSideBar;
+        private VideoPlayerHelper videoPlayerHelper;
     }
 }
 

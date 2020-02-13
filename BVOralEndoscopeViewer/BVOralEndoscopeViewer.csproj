@@ -154,7 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccordVideoWriter.cs" />
+    <Compile Include="H264Encoder.cs" />
     <Compile Include="ImageVideoBrowserSideBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
